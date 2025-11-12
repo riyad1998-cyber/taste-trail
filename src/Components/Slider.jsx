@@ -59,7 +59,9 @@ const Slider = () => {
                   {slide.title}
                 </h1>
                 <p className="mt-4 text-lg md:text-xl font-bold">{slide.subtitle}</p>
-                <button className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-500  to-indigo-500 rounded-md font-semibold hover:bg-yellow-300 transition">
+                <button className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-500  to-indigo-500 rounded-md font-semibold hover:bg-yellow-300 transition hover:scale-105 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)]
+                                   hover:from-[#7b3ff2] hover:to-[#b17cff]
+                                   active:scale-95">
                   Explore Now
                 </button>
               </div>

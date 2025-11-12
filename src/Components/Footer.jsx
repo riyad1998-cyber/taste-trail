@@ -40,7 +40,7 @@ const Footer = () => {
               placeholder="Enter your email"
               className="px-2 py-2 rounded-l-md border-none outline-white text-white w-full"
             />
-            <button className="bg-gradient-to-r from-purple-500  to-indigo-500 px-4 py-2 rounded-r-md font-semibold hover:bg-yellow-500 transition">
+            <button className="bg-gradient-to-r from-purple-500  to-indigo-500 px-4 py-2 rounded-r-md font-semibold hover:bg-yellow-500 transition hover:scale-105 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
               Subscribe
             </button>
           </div>
