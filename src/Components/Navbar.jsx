@@ -1,0 +1,95 @@
+import React from "react";
+import { Link } from "react-router";
+import { NavLink } from "react-router-dom";
+
+const Navbar = () => {
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+            }`
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/reviews"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+            }`
+          }
+        >
+          All Reviews
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/resturants"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+            }`
+          }
+        >
+          Restaurants
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+            }`
+          }
+        >
+          About
+        </NavLink>
+      </li>
+    </>
+  );
+
+  return (
+    <div className="bg-gradient-to-r from-[#4b0082] via-[#6a5acd] to-[#1e3a8a] shadow-lg">
+      <div className="navbar max-w-[1700px] mx-auto text-white px-4">
+        <div className="navbar-start flex items-center">
+          <div className="dropdown">
+            <button className="btn btn-ghost lg:hidden">
+              <span className="text-2xl font-bold">☰</span>
+            </button>
+            <ul className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 p-2 shadow text-white">
+              {links}
+            </ul>
+          </div>
+         <Link className="text-2xl font-extrabold mb-2 flex items-center gap-2">
+  <span>🍴</span>
+  <span>
+    Taste<span className="text-yellow-300">Trail</span>
+  </span>
+</Link>
+
+
+        </div>
+
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{links}</ul>
+        </div>
+
+        <div className="navbar-end">
+          <Link className="font-medium px-3 py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500  to-indigo-500">
+            Login
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
