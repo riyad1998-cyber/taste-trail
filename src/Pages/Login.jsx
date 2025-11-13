@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
+const {signIn} = use(AuthContext);
+const handleLogin = (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signIn(email, password)
+    .then(result=>{
+        const user = result.user;
+    })
+    .catch((error) => {
+    const errorMessage = error.message;
+    alert(errorMessage)
+  });
+}
+
   return (
     <div className='flex justify-center mt-8 items-center'>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
@@ -10,7 +27,7 @@ const Login = () => {
           Login Your Account
         </h2>
         <div className="card-body">
-          <form>
+          <form onSubmit={handleLogin}>
             <fieldset className="fieldset">
               <label className="label font-bold">Email</label>
               <input
@@ -29,7 +46,7 @@ const Login = () => {
                 required
               />
               <button
-                type='button'
+                type='submit'
                 className="btn text-white mt-4 bg-gradient-to-r from-purple-500 to-indigo-500 px-4 py-2 rounded-r-md font-semibold hover:bg-yellow-500 transition hover:scale-100 hover:shadow-[0_0_10px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-85"
               >
                 Login

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="max-w-[1700px] mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         
         <div>
-          <h1 className="text-2xl font-extrabold mb-2">🍴 Taste<span className="text-yellow-300">Trail</span></h1>
+          <Link to="/" className="text-2xl font-extrabold mb-2">🍴 Taste<span className="text-yellow-300">Trail</span></Link>
           <p className="text-sm text-white/80">
             Connect with local food lovers, share reviews, and explore amazing flavors near you!
           </p>

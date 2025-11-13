@@ -1,8 +1,17 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+    const {user, logOut} = use(AuthContext);
+    const handleLogOut = ()=>{
+        logOut().then(() => {
+  alert("You Logged Out Successfully")
+}).catch((error) => {
+  console.log(error)
+});
+    }
   const links = (
     <>
       <li>
@@ -68,7 +77,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-         <Link className="text-2xl font-extrabold mb-2 flex items-center gap-2">
+         <Link to="/" className="text-2xl font-extrabold mb-2 flex items-center gap-2">
   <span>🍴</span>
   <span>
     Taste<span className="text-yellow-300">Trail</span>
@@ -80,9 +89,13 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
-          <Link to="/auth/login" className="font-medium px-3 py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500  to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
+            {
+                user ? <button onClick={handleLogOut} className="font-medium px-3 py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500  to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">Logout</button> : 
+                <Link to="/auth/login" className="font-medium px-3 py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500  to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
             Login
           </Link>
+            }
+          
         </div>
       </div>
     </div>
