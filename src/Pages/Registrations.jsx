@@ -1,29 +1,41 @@
 import React, { use } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Registration = () => {
+  const { createUser, setUser } = use(AuthContext);
 
-const {createUser, setUser} = use(AuthContext);
-
-const handleRegister = (e)=>{
+  const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const photo = form.photo.value;
     const password = form.password.value;
-    const confirmPassword = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error("Password must include uppercase, lowercase, and be at least 6 characters long!");
+      return;
+    }
+
     createUser(email, password)
-    .then(result =>{
+      .then(result => {
         const user = result.user;
         setUser(user);
-    })
-    .catch(error=>{
+        toast.success("Registration successful!");
+      })
+      .catch(error => {
         const errorMessage = error.message;
-        alert(errorMessage)
-    })
-}
+        toast.error(errorMessage);
+      });
+  };
 
   return (
     <div className='flex justify-center mt-8 items-center'>
@@ -69,6 +81,7 @@ const handleRegister = (e)=>{
                 placeholder="Enter your password"
                 required
               />
+
               <label className="label font-bold">Confirm Password</label>
               <input
                 name='confirmPassword'

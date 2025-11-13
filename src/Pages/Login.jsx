@@ -1,24 +1,37 @@
-import React, { use } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
-const {signIn} = use(AuthContext);
-const handleLogin = (e)=>{
+  const { signIn, signInwithGoogle } = useContext(AuthContext);
+
+  const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
     signIn(email, password)
-    .then(result=>{
+      .then((result) => {
         const user = result.user;
-    })
-    .catch((error) => {
-    const errorMessage = error.message;
-    alert(errorMessage)
-  });
-}
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    signInwithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log("Google Login successful:", user);
+        alert("Google Login successful!");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
   return (
     <div className='flex justify-center mt-8 items-center'>
@@ -57,6 +70,7 @@ const handleLogin = (e)=>{
           <p className='flex items-center text-center justify-center my-2'>or</p>
 
           <button
+            onClick={handleGoogleLogin}
             className='btn bg-gradient-to-r from-purple-500 to-pink-500 text-white w-full flex items-center justify-center gap-2 px-4 py-2 rounded-r-md font-semibold transition hover:scale-100 hover:shadow-[0_0_10px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-85'
           >
             <FcGoogle size={22} /> Continue With Google
@@ -64,7 +78,7 @@ const handleLogin = (e)=>{
 
           <p className='font-semibold text-center pt-5'>
             Don't have an account?{" "}
-            <Link  className='text-red-500' to="/auth/registration">
+            <Link className='text-red-500' to="/auth/registration">
               Register
             </Link>
           </p>
