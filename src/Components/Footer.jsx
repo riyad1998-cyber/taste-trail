@@ -18,8 +18,8 @@ const Footer = () => {
           <ul className="space-y-2 text-white/90">
             <li><Link className="hover:text-yellow-400 transition" to="/">Home</Link></li>
             <li><Link className="hover:text-yellow-400 transition" to="/reviews">All Reviews</Link></li>
-            <li><Link className="hover:text-yellow-400 transition" to="/add-review">Add Review</Link></li>
-            <li><Link className="hover:text-yellow-400 transition" to="/my-reviews">About Us</Link></li>
+            <li><Link className="hover:text-yellow-400 transition" to="/resturants">Resturants</Link></li>
+            <li><Link className="hover:text-yellow-400 transition" to="/about">About Us</Link></li>
           </ul>
         </div>
         <div>
@@ -40,7 +40,7 @@ const Footer = () => {
               placeholder="Enter your email"
               className="px-2 py-2 rounded-l-md border-none outline-white text-white w-full"
             />
-            <button className="bg-gradient-to-r from-purple-500  to-indigo-500 px-4 py-2 rounded-r-md font-semibold hover:bg-yellow-500 transition hover:scale-105 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
+            <button className="bg-gradient-to-r from-purple-500  to-indigo-500 px-4 py-2 rounded-r-md font-semibold hover:bg-yellow-500 transition hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
               Subscribe
             </button>
           </div>
@@ -49,7 +49,9 @@ const Footer = () => {
       </div>
 
       <div className="bg-black/40 text-center py-4 mt-6 text-white/70 text-sm">
-        &copy; {new Date().getFullYear()} FoodieConnect. All rights reserved.
+      <div className="bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent font-bold">
+        &copy; {new Date().getFullYear()} TasteTrail All rights reserved.
+        </div>
       </div>
     </footer>
   );

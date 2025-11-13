@@ -80,7 +80,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
-          <Link className="font-medium px-3 py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500  to-indigo-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
+          <Link to="/auth/login" className="font-medium px-3 py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500  to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95">
             Login
           </Link>
         </div>
