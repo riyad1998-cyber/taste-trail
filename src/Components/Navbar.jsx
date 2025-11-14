@@ -95,18 +95,6 @@ const Navbar = () => {
             </button>
             <ul className="menu menu-sm dropdown-content mt-3 w-48 rounded-box bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 p-2 shadow text-white">
               {links}
-
-              {user && (
-                <li className="flex justify-center mt-2 mb-2">
-                  <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white">
-                    <img
-                      src={userPhoto}
-                      alt={user.displayName || "User"}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </li>
-              )}
             </ul>
           </div>
 
@@ -125,7 +113,6 @@ const Navbar = () => {
         <div className="navbar-end gap-2 md:gap-4 flex">
           {user ? (
             <>
-
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-white">
                 <img
                   src={userPhoto}
