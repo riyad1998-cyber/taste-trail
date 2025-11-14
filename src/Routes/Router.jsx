@@ -11,6 +11,7 @@ import AuthLayout from "../Layout/AuthLayout";
 import MyReviewCard from "../Components/AllReview";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AllReview from "../Components/AllReview";
+import MyReview from "../Pages/MyReview";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
         path: "/myReviews",
         element: (
           <PrivateRoute>
-            <MyReviewCard></MyReviewCard>
+            <MyReview></MyReview>
           </PrivateRoute>
         ),
       },

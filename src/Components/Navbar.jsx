@@ -43,7 +43,6 @@ const Navbar = () => {
       </NavLink>
     </li>
 
-    {/* ⭐ Fixed: My Reviews now separate item, so no wrapping issue */}
     <li>
       <NavLink
         to="/myReviews"
@@ -53,7 +52,7 @@ const Navbar = () => {
           }`
         }
       >
-        My Reviews
+        Add Reviews
       </NavLink>
     </li>
 
