@@ -20,7 +20,6 @@ const ReviewCard = ({ item, onViewDetails, onToggleFavorite }) => {
       role="article"
       aria-labelledby={`title-${item._id}`}
     >
-      {/* Image */}
       <div className="relative w-full h-44 md:h-56 lg:h-48 overflow-hidden">
         <img
           src={item.photo}
