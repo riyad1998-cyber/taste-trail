@@ -16,57 +16,75 @@ const Navbar = () => {
   };
 
   const links = (
-    <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
-              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
-            }`
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/reviews"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
-              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
-            }`
-          }
-        >
-          All Reviews
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/resturants"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
-              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
-            }`
-          }
-        >
-          Restaurants
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
-              isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
-            }`
-          }
-        >
-          About
-        </NavLink>
-      </li>
-    </>
-  );
+  <>
+    <li>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+            isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+          }`
+        }
+      >
+        Home
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/reviews"
+        className={({ isActive }) =>
+          `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+            isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+          }`
+        }
+      >
+        All Reviews
+      </NavLink>
+    </li>
+
+    {/* ⭐ Fixed: My Reviews now separate item, so no wrapping issue */}
+    <li>
+      <NavLink
+        to="/myReviews"
+        className={({ isActive }) =>
+          `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+            isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+          }`
+        }
+      >
+        My Reviews
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/resturants"
+        className={({ isActive }) =>
+          `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+            isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+          }`
+        }
+      >
+        Restaurants
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          `px-3 py-2 rounded-md font-semibold transition-all duration-300 ${
+            isActive ? "bg-white text-pink-600" : "text-white hover:bg-white/20"
+          }`
+        }
+      >
+        About
+      </NavLink>
+    </li>
+  </>
+);
+
 
   return (
     <div className="bg-gradient-to-r from-[#4b0082] via-[#6a5acd] to-[#1e3a8a] shadow-lg">
