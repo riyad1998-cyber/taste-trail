@@ -19,7 +19,7 @@ const About = () => {
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-4 text-purple-700">
+            <h2 className="text-3xl mb-4 font-bold inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
               Our Mission
             </h2>
             <p className="text-gray-700 text-lg">
@@ -29,7 +29,7 @@ const About = () => {
             </p>
           </div>
           <div>
-            <h2 className="text-3xl font-bold mb-4 text-purple-700">
+            <h2 className="text-3xl mb-4 font-bold inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
               Our Vision
             </h2>
             <p className="text-gray-700 text-lg">
@@ -49,7 +49,7 @@ const About = () => {
             className="w-full md:w-1/2 rounded-lg shadow-lg object-cover"
           />
           <div>
-            <h2 className="text-3xl font-bold mb-4 text-purple-700">
+            <h2 className="text-3xl mb-4 font-bold inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
               Our Story
             </h2>
             <p className="text-gray-700 text-lg mb-4">
@@ -65,8 +65,8 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="py-16 px-4 bg-gradient-to-r from-[#4b0082] via-[#6a5acd] to-[#1e3a8a] text-white text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent inline-block">
           Join Our Food Community
         </h2>
         <p className="text-lg md:text-xl mb-6">
@@ -75,7 +75,7 @@ const About = () => {
         </p>
         <a
           href="/auth/registration"
-          className="inline-block px-6 py-3 rounded-full bg-yellow-300 text-purple-800 font-semibold text-lg hover:scale-105 transition-transform"
+          className="inline-block px-6 py-3 rounded-full font-semibold text-lgduration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
         >
           Get Started
         </a>
