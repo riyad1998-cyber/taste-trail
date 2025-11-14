@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc'; 
+import { updateProfile } from "firebase/auth";
 
 const Registration = () => {
   const { createUser, setUser, signInwithGoogle } = useContext(AuthContext); 
@@ -30,8 +31,19 @@ const Registration = () => {
     createUser(email, password)
       .then(result => {
         const user = result.user;
-        setUser(user);
-        toast.success("Registration successful!");
+
+        updateProfile(user, {
+          displayName: name,
+          photoURL: photo
+        })
+        .then(() => {
+          setUser({ ...user, displayName: name, photoURL: photo });
+          toast.success("Registration successful!");
+          form.reset();
+        })
+        .catch(error => {
+          toast.error("Profile update failed: " + error.message);
+        });
       })
       .catch(error => {
         toast.error(error.message);
@@ -42,6 +54,7 @@ const Registration = () => {
     signInwithGoogle()
       .then((result) => {
         const user = result.user;
+        setUser(user); 
         toast.success("Google Registration successful!");
       })
       .catch((error) => {
@@ -82,7 +95,6 @@ const Registration = () => {
               </button>
             </fieldset>
           </form>
-
 
           <p className='flex items-center text-center justify-center my-2'>or</p>
 
