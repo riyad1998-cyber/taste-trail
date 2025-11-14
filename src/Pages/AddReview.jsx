@@ -1,16 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const AddReview = () => {
+  const { user } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = {
+      foodName: e.target.foodName.value,
+      photo: e.target.photo.value,
+      restaurantName: e.target.restaurantName.value,
+      restaurantLocation: e.target.restaurantLocation.value,
+      rating: e.target.rating.value,
+      description: e.target.description.value,
+      reviewerName: user.email,
+    };
+
+    fetch("http://localhost:3000/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Review submitted successfully!");
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Failed to submit review!");
+      });
+  };
+
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-10">
       <div className="flex items-center justify-center">
-      <h2 className='text-2xl font-bold inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent'>
-        Add Review
-      </h2>
-</div>
-      <form className="space-y-5">
-
-
+        <h2 className="text-2xl font-bold inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
+          Add Review
+        </h2>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block font-semibold mb-1">Food Name</label>
           <input
@@ -26,7 +60,7 @@ const AddReview = () => {
           <label className="block font-semibold mb-1">Food Image URL</label>
           <input
             type="text"
-            name="foodImage"
+            name="photo"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
             placeholder="Upload image URL"
             required
@@ -48,7 +82,7 @@ const AddReview = () => {
           <label className="block font-semibold mb-1">Location</label>
           <input
             type="text"
-            name="location"
+            name="restaurantLocation"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
             placeholder="Dhaka, Bangladesh"
             required
@@ -74,7 +108,7 @@ const AddReview = () => {
         <div>
           <label className="block font-semibold mb-1">Review Text</label>
           <textarea
-            name="reviewText"
+            name="description"
             className="w-full px-4 py-3 h-28 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-pink-400"
             placeholder="Write your review..."
             required
@@ -86,7 +120,6 @@ const AddReview = () => {
             Submit Review
           </button>
         </div>
-
       </form>
     </div>
   );

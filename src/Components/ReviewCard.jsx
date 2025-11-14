@@ -57,7 +57,9 @@ const ReviewCard = ({ item, onViewDetails, onToggleFavorite }) => {
           <div className="inline-flex items-center bg-yellow-50 rounded-md px-2 py-1">
             <FaStar className="text-yellow-500 mr-1" />
             <span className="font-medium text-sm">
-              {item.rating?.toFixed(1) ?? "N/A"}
+             {item.rating !== undefined && !isNaN(Number(item.rating))
+  ? Number(item.rating).toFixed(1)
+  : "N/A"}
             </span>
           </div>
           <span className="text-sm text-slate-600">

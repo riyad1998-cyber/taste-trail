@@ -75,7 +75,7 @@ const About = () => {
         </p>
         <a
           href="/auth/registration"
-          className="inline-block px-6 py-3 rounded-full font-semibold text-lgduration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
+          className="px-6 py-3 inline-block text-white font-semibold rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95"
         >
           Get Started
         </a>

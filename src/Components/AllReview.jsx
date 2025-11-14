@@ -9,7 +9,7 @@ const AllReview = () => {
   return (
     <div className='mt-4 max-w-[1700px] mx-auto px-4'>
       <div className='flex flex-col items-center mb-6'>
-        <h1 className='text-2xl font-bold bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent'>
+        <h1 className='text-3xl font-bold bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent'>
           All Reviews
         </h1>
         <p className='text-xl text-gray-600'>
