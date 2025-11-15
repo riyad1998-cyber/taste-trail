@@ -12,7 +12,7 @@ import pic9 from "../assets/unnamed (5).webp"
 const Resturant = () => {
   return (
     <div className="max-w-[1700px] mx-auto p-6">
-      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
+      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800 bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
         Top Rated Restaurants
       </h1>
       <p className="text-center text-gray-500 mb-12">
