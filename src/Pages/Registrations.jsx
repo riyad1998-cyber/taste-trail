@@ -37,7 +37,12 @@ const Registration = () => {
           photoURL: photo
         })
         .then(() => {
-          setUser({ ...user, displayName: name, photoURL: photo });
+          setUser({
+            ...user,
+            displayName: name,
+            photoURL: photo
+          });
+
           toast.success("Registration successful!");
           form.reset();
         })
@@ -54,7 +59,11 @@ const Registration = () => {
     signInwithGoogle()
       .then((result) => {
         const user = result.user;
-        setUser(user); 
+        setUser({
+          ...user,
+          displayName: user.displayName || "User",
+          photoURL: user.photoURL || "https://i.ibb.co/placeholder.png"
+        });
         toast.success("Google Registration successful!");
       })
       .catch((error) => {

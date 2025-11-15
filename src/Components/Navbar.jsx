@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
 
   const handleLogOut = () => {
     logOut()
       .then(() => {
         alert("You Logged Out Successfully");
+        setOpen(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   };
 
   const links = (
@@ -29,6 +29,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/reviews"
@@ -41,6 +42,7 @@ const Navbar = () => {
           All Reviews
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/addReviews"
@@ -53,6 +55,7 @@ const Navbar = () => {
           Add Reviews
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/resturants"
@@ -65,6 +68,7 @@ const Navbar = () => {
           Restaurants
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/about"
@@ -80,15 +84,12 @@ const Navbar = () => {
     </>
   );
 
-  const userPhoto = user?.photoURL
-    ? user.photoURL.replace(".com.com", ".com") 
-    : "https://i.ibb.co/placeholder.png";
+  const userPhoto = user?.photoURL ? user.photoURL : "https://i.ibb.co/placeholder.png";
 
   return (
-    <div className="bg-gradient-to-r from-[#4b0082] via-[#6a5acd] to-[#1e3a8a] shadow-lg">
+    <div className="bg-gradient-to-r from-[#4b0082] via-[#6a5acd] to-[#1e3a8a] shadow-lg relative">
       <div className="navbar max-w-[1700px] mx-auto text-white px-4">
         <div className="navbar-start flex items-center">
-
           <div className="dropdown lg:hidden">
             <button className="btn btn-ghost">
               <span className="text-xl font-bold">☰</span>
@@ -110,34 +111,56 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
 
-        <div className="navbar-end gap-2 md:gap-4 flex">
+        <div className="navbar-end gap-2 md:gap-4 flex relative">
           {user ? (
             <>
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-white">
-                <img
-                  src={userPhoto}
-                  alt={user.displayName || "User"}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <button
-                onClick={handleLogOut}
-                className="font-medium px-3 py-1 md:px-3 md:py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
+              <div
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden border-2 border-white cursor-pointer"
+                onClick={() => setOpen(!open)}
               >
-                Logout
-              </button>
+                <img src={userPhoto} alt={user.displayName || "User"} className="w-full h-full object-cover" />
+              </div>
+
+              {open && (
+                <div className="absolute right-0 top-14 bg-white w-44 rounded-lg shadow-xl p-3 text-gray-800 z-50">
+                  <p className="font-semibold text-black border-b pb-2">{user.displayName || "User"}</p>
+
+                  <Link
+                    to="/myFavourite"
+                    onClick={() => setOpen(false)}
+                    className="block px-3 py-2 mt-2 rounded-md hover:bg-gray-100 font-medium"
+                  >
+                    ❤️ My Favourite
+                  </Link>
+
+                  <Link
+                    to="/myReviews"
+                    onClick={() => setOpen(false)}
+                    className="block px-3 py-2 rounded-md hover:bg-gray-100 font-medium"
+                  >
+                    ⭐ My Reviews
+                  </Link>
+
+                  <button
+                    onClick={handleLogOut}
+                    className="w-full mt-2 px-3 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-white rounded-md font-semibold"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </>
           ) : (
             <>
               <Link
                 to="/auth/registration"
-                className="font-medium px-3 py-1 md:px-3 md:py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
+                className="font-medium px-3 py-1 md:px-3 md:py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
               >
                 Registration
               </Link>
               <Link
                 to="/auth/login"
-                className="font-medium px-3 py-1 md:px-3 md:py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
+                className="font-medium px-3 py-1 md:px-3 md:py-2 rounded transition-all duration-300 bg-gradient-to-r from-purple-500 to-indigo-500 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] active:scale-95 text-sm md:text-base"
               >
                 Login
               </Link>
