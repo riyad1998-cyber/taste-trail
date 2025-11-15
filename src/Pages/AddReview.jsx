@@ -8,6 +8,12 @@ const AddReview = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    
+    const today = new Date();
+    const formattedDate = `${String(today.getDate()).padStart(2, "0")}/${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}/${today.getFullYear()}`;
+
     const formData = {
       foodName: e.target.foodName.value,
       photo: e.target.photo.value,
@@ -16,6 +22,7 @@ const AddReview = () => {
       rating: e.target.rating.value,
       description: e.target.description.value,
       reviewerName: user.email,
+      createdAt: formattedDate,
     };
 
     fetch("http://localhost:3000/reviews", {
@@ -44,6 +51,7 @@ const AddReview = () => {
           Add Review
         </h2>
       </div>
+
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block font-semibold mb-1">Food Name</label>

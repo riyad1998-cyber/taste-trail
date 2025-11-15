@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const ReviewCard = ({ item, onViewDetails, onToggleFavorite }) => {
   const [isFav, setIsFav] = useState(false);
@@ -70,14 +71,16 @@ const ReviewCard = ({ item, onViewDetails, onToggleFavorite }) => {
           </span>
         </div>
 
-        <button
-          onClick={handleViewDetails}
-          className="mt-auto text-sm font-semibold px-3 py-2 rounded-md bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95 text-white"
-          type="button"
-          aria-label={`View details for ${item.foodName}`}
-        >
-          View Details
-        </button>
+        <Link
+  to={`/reviewDetail/${item._id}`}
+  onClick={handleViewDetails}
+  className="text-center mt-auto text-sm font-semibold px-3 py-2 rounded-md bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95 text-white"
+  type="button"
+  aria-label={`View details for ${item.foodName}`}
+>
+  View Details
+</Link>
+
       </div>
     </article>
   );
