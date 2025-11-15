@@ -41,9 +41,11 @@ const MyReview = () => {
 
   return (
     <div className="max-w-6xl mx-auto mt-10 px-4">
-      <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
+      <div className="flex items-center justify-center">
+        <h2 className="text-3xl font-bold text-center mb-6 inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
         My Reviews
       </h2>
+      </div>
 
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow rounded-lg">

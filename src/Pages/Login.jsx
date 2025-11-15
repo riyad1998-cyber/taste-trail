@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../Provider/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
   const { signIn, signInwithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
-  
   const from = location.state?.from?.pathname || "/"; 
 
   const handleLogin = (e) => {
@@ -20,10 +20,11 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        toast.success("Login successful!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        alert(error.message);
+        toast.error("Email or Password Incorrect");
       });
   };
 
@@ -31,10 +32,11 @@ const Login = () => {
     signInwithGoogle()
       .then((result) => {
         const user = result.user;
+        toast.success("Login successful!");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        alert(error.message);
+        toast.error("Google login failed. Try again.");
       });
   };
 

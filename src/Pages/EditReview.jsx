@@ -71,9 +71,11 @@ const EditReview = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-10">
-      <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
+      <div className="flex justify-center">
+        <h2 className="text-2xl font-bold text-center mb-6 inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
         Edit Review
       </h2>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>

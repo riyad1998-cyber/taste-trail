@@ -10,6 +10,7 @@ import img1 from "../assets/ilya-mashkov-_qxbJUr9RqI-unsplash.jpg";
 import img2 from "../assets/max-mota-N6BTNbaKZMo-unsplash.jpg";
 import img3 from "../assets/radowan-nakif-rehan-gU6_KA8zCvM-unsplash.jpg";
 import img4 from "../assets/sahal-hameed-Nq9KlQTTEbQ-unsplash.jpg";
+import { Link } from "react-router";
 
 const Slider = () => {
   const slides = [
@@ -59,11 +60,11 @@ const Slider = () => {
                   {slide.title}
                 </h1>
                 <p className="mt-4 text-lg md:text-xl font-bold">{slide.subtitle}</p>
-                <button className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-500  to-indigo-500 rounded-md font-semibold hover:bg-yellow-300 transition hover:scale-105 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)]
+                <Link to="/reviews" className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-500  to-indigo-500 rounded-md font-semibold hover:bg-yellow-300 transition hover:scale-105 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)]
                                    hover:from-[#7b3ff2] hover:to-[#b17cff]
                                    active:scale-95">
                   Explore Now
-                </button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>
