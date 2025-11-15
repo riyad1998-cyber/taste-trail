@@ -6,9 +6,8 @@ import { toast } from "react-hot-toast";
 const MyReview = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  const [deleteId, setDeleteId] = useState(null); // for modal
+  const [deleteId, setDeleteId] = useState(null);
 
-  // Fetch all reviews by this user
   const fetchReviews = async () => {
     if (!user?.email) return;
     try {
@@ -26,7 +25,6 @@ const MyReview = () => {
     fetchReviews();
   }, [user]);
 
-  // Delete review
   const handleDelete = async () => {
     try {
       await fetch(`http://localhost:3000/reviews/${deleteId}`, {
@@ -99,7 +97,6 @@ const MyReview = () => {
         </table>
       </div>
 
-      {/* Delete Confirmation Modal */}
       {deleteId && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
