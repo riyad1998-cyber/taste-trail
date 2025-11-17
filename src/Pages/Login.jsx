@@ -21,7 +21,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Login successful!");
-        navigate(from, { replace: true });
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         toast.error("Email or Password Incorrect");
@@ -33,7 +33,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Login successful!");
-        navigate(from, { replace: true });
+         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         toast.error("Google login failed. Try again.");
