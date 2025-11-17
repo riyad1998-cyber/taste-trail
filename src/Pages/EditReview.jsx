@@ -9,13 +9,11 @@ const EditReview = () => {
   const { user } = useContext(AuthContext);
   const [review, setReview] = useState(null);
 
-  // Fetch review by ID
   const fetchReview = async () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/reviews/${id}`);
       const data = await res.json();
 
-      // Check if current user is the owner
       if (data?.reviewerName !== user.email) {
         toast.error("You are not authorized to edit this review");
         navigate("/myReviews");
@@ -32,7 +30,6 @@ const EditReview = () => {
     if (user?.email) fetchReview();
   }, [user]);
 
-  // Handle update review
   const handleSubmit = async (e) => {
     e.preventDefault();
 
