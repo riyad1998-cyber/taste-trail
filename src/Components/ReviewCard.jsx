@@ -12,7 +12,7 @@ const ReviewCard = ({ item, onViewDetails, onToggleFavorite, isFav }) => {
   const handleToggleFav = () => {
     const newFav = !fav;
     setFav(newFav);
-    if (onToggleFavorite) onToggleFavorite(item._id, newFav);
+    if (onToggleFavorite) onToggleFavorite(item, newFav);
   };
 
   return (
@@ -56,6 +56,7 @@ const ReviewCard = ({ item, onViewDetails, onToggleFavorite, isFav }) => {
 
         <Link
           to={`/reviewDetail/${item._id}`}
+          state={{ from: `/reviewDetail/${item._id}` }}
           onClick={() => onViewDetails && onViewDetails(item._id)}
           className="text-center mt-auto text-sm font-semibold px-3 py-2 rounded-md bg-gradient-to-r from-purple-500 to-indigo-500 hover:scale-100 hover:shadow-[0_0_20px_rgba(159,98,242,0.6)] hover:from-[#7b3ff2] hover:to-[#b17cff] active:scale-95 text-white"
         >

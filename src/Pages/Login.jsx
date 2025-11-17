@@ -18,24 +18,22 @@ const Login = () => {
     const password = form.password.value;
 
     signIn(email, password)
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         toast.success("Login successful!");
-        navigate(`${location.state ? location.state : "/"}`);
+        navigate(from, { replace: true });
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Email or Password Incorrect");
       });
   };
 
   const handleGoogleLogin = () => {
     signInwithGoogle()
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         toast.success("Login successful!");
-         navigate(`${location.state ? location.state : "/"}`);
+        navigate(from, { replace: true });
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Google login failed. Try again.");
       });
   };
