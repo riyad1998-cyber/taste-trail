@@ -1,16 +1,14 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../Layout/RootLayout";
 import Home from "../Pages/Home";
 import ErrorPage from "../Pages/ErrorPage";
-import ReviewCard from "../Components/ReviewCard";
 import Resturant from "../Pages/Resturant";
 import About from "../Pages/About";
 import Login from "../Pages/Login";
 import Registrations from "../Pages/Registrations";
 import AuthLayout from "../Layout/AuthLayout";
-import MyReviewCard from "../Components/AllReview";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AllReview from "../Components/AllReview";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddReview from "../Pages/AddReview";
 import ReviewDetail from "../Pages/ReviewDetail";
 import MyFavourite from "../Pages/MyFavourite";
@@ -20,82 +18,67 @@ import EditReview from "../Pages/EditReview";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout></RootLayout>,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: <Home></Home>,
-      },
+      { index: true, element: <Home /> },
       {
         path: "/reviews",
-        element: <AllReview></AllReview>,
-        loader: () => fetch('http://localhost:3000/reviews')
+        element: <AllReview />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/reviews`)
       },
       {
         path: "/addReviews",
         element: (
           <PrivateRoute>
-            <AddReview></AddReview>,
+            <AddReview />
+          </PrivateRoute>
+        ),
+      },
+      { path: "/resturants", element: <Resturant /> },
+      { path: "/about", element: <About /> },
+      {
+        path: "/myFavourite",
+        element: (
+          <PrivateRoute>
+            <MyFavourite />
           </PrivateRoute>
         ),
       },
       {
-        path: "/resturants",
-        element: <Resturant></Resturant>,
+        path: "/myReviews",
+        element: (
+          <PrivateRoute>
+            <MyReview />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/about",
-        element: <About></About>,
+        path: "/edit-review/:id",
+        element: (
+          <PrivateRoute>
+            <EditReview />
+          </PrivateRoute>
+        ),
       },
       {
-   path: "/myFavourite",
-   element: (
-     <PrivateRoute>
-       <MyFavourite></MyFavourite>
-     </PrivateRoute>
-   ),
-},
-
-{
-   path: "/myReviews",
-   element: (
-     <PrivateRoute>
-       <MyReview></MyReview>
-     </PrivateRoute>
-   ),
-},
-{
-  path: "/edit-review/:id",
-  element: (
-    <PrivateRoute>
-      <EditReview />
-    </PrivateRoute>
-  ),
-},
-      {
-  path: "/reviewDetail/:id",
-  element: (
-    <PrivateRoute>
-      <ReviewDetail />
-    </PrivateRoute>
-  ),
-  loader: ({params})=> fetch(`http://localhost:3000/reviews/${params.id}`)
-},
+        path: "/reviewDetail/:id",
+        element: (
+          <PrivateRoute>
+            <ReviewDetail />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/reviews/${params.id}`)
+      },
     ],
   },
   {
     path: "/auth",
-    element: <AuthLayout></AuthLayout>,
+    element: <AuthLayout />,
     children: [
-      {
-        path: "/auth/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/auth/registration",
-        element: <Registrations></Registrations>,
-      },
+      { path: "/auth/login", element: <Login /> },
+      { path: "/auth/registration", element: <Registrations /> },
     ],
   },
 ]);

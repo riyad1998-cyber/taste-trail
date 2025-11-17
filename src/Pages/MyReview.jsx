@@ -8,12 +8,13 @@ const MyReview = () => {
   const [reviews, setReviews] = useState([]);
   const [deleteId, setDeleteId] = useState(null);
 
+  // Fetch user's reviews
   const fetchReviews = async () => {
     if (!user?.email) return;
     try {
-      const res = await fetch("http://localhost:3000/reviews");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/reviews`);
       const data = await res.json();
-      const userReviews = data.filter(r => r.reviewerName === user.email);
+      const userReviews = Array.isArray(data) ? data.filter(r => r.reviewerName === user.email) : [];
       setReviews(userReviews);
     } catch (err) {
       console.log(err);
@@ -25,9 +26,11 @@ const MyReview = () => {
     fetchReviews();
   }, [user]);
 
+  // Handle delete review
   const handleDelete = async () => {
+    if (!deleteId) return;
     try {
-      await fetch(`http://localhost:3000/reviews/${deleteId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/reviews/${deleteId}`, {
         method: "DELETE",
       });
       toast.success("Review deleted successfully");
@@ -43,8 +46,8 @@ const MyReview = () => {
     <div className="max-w-6xl mx-auto mt-10 px-4">
       <div className="flex items-center justify-center">
         <h2 className="text-3xl font-bold text-center mb-6 inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
-        My Reviews
-      </h2>
+          My Reviews
+        </h2>
       </div>
 
       <div className="overflow-x-auto">
@@ -66,14 +69,17 @@ const MyReview = () => {
                 </td>
               </tr>
             )}
-            {reviews.map((item) => (
+            {Array.isArray(reviews) && reviews.map((item) => (
               <tr key={item._id} className="border-b">
                 <td className="py-2 px-4">
                   <img
                     src={item.photo}
                     alt={item.foodName}
                     className="w-20 h-20 object-cover rounded"
-                    onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/100x100?text=No+Image")}
+                    onError={(e) =>
+                      (e.currentTarget.src =
+                        "https://via.placeholder.com/100x100?text=No+Image")
+                    }
                   />
                 </td>
                 <td className="py-2 px-4">{item.foodName}</td>
@@ -99,6 +105,7 @@ const MyReview = () => {
         </table>
       </div>
 
+      {/* Delete confirmation modal */}
       {deleteId && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">

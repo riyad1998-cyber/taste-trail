@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData } from 'react-router-dom';
 import ReviewCard from './ReviewCard';
 import { AuthContext } from '../Provider/AuthProvider';
 
@@ -8,7 +8,7 @@ const AllReview = () => {
   const { user } = useContext(AuthContext);
   const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredReviews, setFilteredReviews] = useState(data || []);
+  const [filteredReviews, setFilteredReviews] = useState(Array.isArray(data) ? data : []);
 
   useEffect(() => {
     if (user?.email) {
@@ -18,15 +18,16 @@ const AllReview = () => {
   }, [user]);
 
   useEffect(() => {
-    const filtered = data.filter(item =>
-      item.foodName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredReviews(filtered);
+    if (Array.isArray(data)) {
+      const filtered = data.filter(item =>
+        item.foodName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredReviews(filtered);
+    }
   }, [searchTerm, data]);
 
   const handleToggleFavorite = (item, fav) => {
     if (!user?.email) return;
-
     let updated;
     if (fav) {
       updated = [...favorites, item];
@@ -57,14 +58,12 @@ const AllReview = () => {
       </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {filteredReviews.map(item => (
+        {Array.isArray(filteredReviews) && filteredReviews.map(item => (
           <ReviewCard
             key={item._id}
             item={item}
             onViewDetails={(id) => console.log("View:", id)}
-            onToggleFavorite={(id, fav) => {
-              handleToggleFavorite(item, fav);
-            }}
+            onToggleFavorite={(id, fav) => handleToggleFavorite(item, fav)}
             isFav={favorites.some(favItem => favItem._id === item._id)}
           />
         ))}

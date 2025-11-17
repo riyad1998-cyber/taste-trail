@@ -25,13 +25,12 @@ const AddReview = () => {
       createdAt: formattedDate,
     };
 
-    fetch("http://localhost:3000/reviews", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(`${import.meta.env.VITE_API_URL}/reviews`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData),
+})
+
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

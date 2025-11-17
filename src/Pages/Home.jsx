@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Slider from "../Components/Slider";
 import ReviewCard from "../Components/ReviewCard";
-import { Link } from "react-router";  // already imported
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [topReviews, setTopReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch(`${import.meta.env.VITE_API_URL}/reviews`)
       .then((res) => res.json())
       .then((data) => {
         const sorted = data.sort((a, b) => b.rating - a.rating);
@@ -20,7 +20,6 @@ const Home = () => {
     <div>
       <Slider />
       <div className="max-w-[1400px] mx-auto px-4">
-
         <div className="mt-10 text-center">
           <h2 className='text-2xl font-bold inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent'>
             Top Rated Foods
@@ -31,7 +30,7 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          {topReviews.map((item) => (
+          {Array.isArray(topReviews) && topReviews.map((item) => (
             <ReviewCard key={item._id} item={item} />
           ))}
         </div>
@@ -44,7 +43,6 @@ const Home = () => {
             Show All
           </Link>
         </div>
-
       </div>
     </div>
   );

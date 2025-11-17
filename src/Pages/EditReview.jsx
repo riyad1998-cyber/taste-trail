@@ -9,16 +9,19 @@ const EditReview = () => {
   const { user } = useContext(AuthContext);
   const [review, setReview] = useState(null);
 
+  // Fetch review by ID
   const fetchReview = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/reviews/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/reviews/${id}`);
       const data = await res.json();
-      if (data?.result?.reviewerName !== user.email) {
+
+      // Check if current user is the owner
+      if (data?.reviewerName !== user.email) {
         toast.error("You are not authorized to edit this review");
         navigate("/myReviews");
         return;
       }
-      setReview(data.result);
+      setReview(data);
     } catch (err) {
       console.log(err);
       toast.error("Failed to load review");
@@ -29,6 +32,7 @@ const EditReview = () => {
     if (user?.email) fetchReview();
   }, [user]);
 
+  // Handle update review
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,7 +52,7 @@ const EditReview = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/reviews/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/reviews/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData),
@@ -73,8 +77,8 @@ const EditReview = () => {
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-10">
       <div className="flex justify-center">
         <h2 className="text-2xl font-bold text-center mb-6 inline-block bg-gradient-to-r from-pink-300 via-yellow-300 to-cyan-300 bg-clip-text text-transparent">
-        Edit Review
-      </h2>
+          Edit Review
+        </h2>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">

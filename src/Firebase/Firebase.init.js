@@ -1,15 +1,13 @@
-
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC1iz5dFAOpKniBZe3jIYnTM4IsgU9kXT0",
-  authDomain: "taste-trail-b596a.firebaseapp.com",
-  projectId: "taste-trail-b596a",
-  storageBucket: "taste-trail-b596a.firebasestorage.app",
-  messagingSenderId: "154015040199",
-  appId: "1:154015040199:web:669bedcbe77e5ff74874e2"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export default app;
